@@ -3,12 +3,12 @@ using my_books.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string ConnectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+string connectionString = builder.Configuration.GetConnectionString("Default");
 
 // Configure DBContext with SQL
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(connectionString);
 });
 
 
