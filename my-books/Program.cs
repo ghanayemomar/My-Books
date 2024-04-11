@@ -11,7 +11,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -29,9 +28,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+// Seed database
+AppDbInitialer.Seed(app);
 
 app.Run();
