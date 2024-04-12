@@ -19,6 +19,12 @@ builder.Services.AddControllers();
 // Add BooksService
 builder.Services.AddScoped<BooksService>(); // Add this line to register BooksService
 
+// Add AuthorService
+builder.Services.AddScoped<AuthorsService>(); // Add this line to register BooksService
+
+// Add PublisherService
+builder.Services.AddScoped<PublishersService>(); // Add this line to register BooksService
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,6 +43,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Seed database
-AppDbInitialer.Seed(app);
+//AppDbInitialer.Seed(app);
 
 app.Run();
