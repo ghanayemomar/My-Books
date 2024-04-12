@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.Json;
-using my_books.Data.Models;
+﻿using my_books.Data.Models;
 using my_books.Data.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Threading;
 
 namespace my_books.Data.Services
 {
