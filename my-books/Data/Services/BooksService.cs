@@ -5,7 +5,7 @@ namespace my_books.Data.Services
 {
     public class BooksService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
         public BooksService(AppDbContext context)
         {
             _context = context;
@@ -46,9 +46,23 @@ namespace my_books.Data.Services
             return _context.Books.ToList();
         }
 
-        public Book GetBookById(int bookId)
+        public BookWithAuthorsVM GetBookById(int bookId)
         {
-            return _context.Books.FirstOrDefault(x => x.Id == bookId);
+            var _bookWithAuthor = _context.Books
+                .Where(n => n.Id == bookId)
+                .Select(book => new BookWithAuthorsVM()
+                {
+                    Title = book.Title,
+                    Description = book.Description,
+                    IsRead = book.IsRead,
+                    DateRead = book.IsRead ? book.DateRead.Value : null,
+                    Rate = book.IsRead ? book.Rate.Value : null,
+                    Genre = book.Genre,
+                    CoverUrl = book.CoverUrl,
+                    PublisherName = book.Publisher.Name,
+                    AuthorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+                }).FirstOrDefault();
+            return _bookWithAuthor;
         }
 
         public Book UpdateBookById(int bookId, BookVM book)

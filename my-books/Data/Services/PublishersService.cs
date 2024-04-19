@@ -5,7 +5,7 @@ namespace my_books.Data.Services
 {
     public class PublishersService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public PublishersService(AppDbContext context)
         {
