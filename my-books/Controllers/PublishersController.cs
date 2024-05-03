@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using my_books.Data.Services;
 using my_books.Data.ViewModels;
+using my_books.Exceptions;
 using System.Security.Cryptography.X509Certificates;
 
 namespace my_books.Controllers
@@ -23,6 +24,10 @@ namespace my_books.Controllers
             {
                 var newPublisher = _publishersService.AddPublisher(publisher);
                 return Created(nameof(AddPublisher), newPublisher);
+            }
+            catch (PublisherNameException ex)
+            {
+                return BadRequest($"{ex.Message}, The Publisher name is: {ex.PublisherName}");
             }
             catch (Exception ex)
             {
