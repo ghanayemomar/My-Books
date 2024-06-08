@@ -18,11 +18,11 @@ namespace my_books.Controllers
 
 
         [HttpGet("get-all-publishers")]
-        public IActionResult GetAllPublishers()
+        public IActionResult GetAllPublishers(string? sortBy = null, string? searchString=null)
         {
             try
             {
-                var _result = _publishersService.GetAllPublishers();
+                var _result = _publishersService.GetAllPublishers(sortBy, searchString);
                 return Ok(_result);
             }
             catch (Exception ex)
